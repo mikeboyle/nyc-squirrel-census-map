@@ -1,9 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { fetchData, mapURL } from './api';
+import { fetchData } from './api';
 
 import Map from './Map';
-import NewMap from './NewMap';
 
 function App() {
   const [sightings, setSightings] = useState([]);
@@ -23,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <p>{resultText}</p>
-      {sightings.length > 0 && <NewMap sightings={sightings} />}
+      {sightings.length > 0 && <Map sightings={sightings} />}
     </div>
   );
 }
