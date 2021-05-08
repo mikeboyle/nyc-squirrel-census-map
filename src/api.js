@@ -6,7 +6,7 @@ export const mapURL = `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KE
 
 export const fetchData = async () => {
   const res = await fetch(
-    'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=5000',
+    'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=5000&primary_fur_color=Gray',
     {
       headers: { 'X-App-Token': NYC_DATA_TOKEN },
     }
@@ -47,4 +47,6 @@ export const distinctFieldValues = (sightings, field) => {
   return Array.from(values).sort();
 };
 
-export const parseDate = (value) => parse(value, 'LLddyyyy', new Date());
+export const parseDate = (value) => {
+  return parse(value, 'LLddyyyy', new Date());
+};

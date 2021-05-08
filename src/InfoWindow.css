@@ -1,6 +1,21 @@
 .infoWindow {
-  width: 100px;
-  height: 100px;
+  position: absolute;
+  z-index: 1;
+  min-width: 100px;
+  min-height: 100px;
+  padding: 0.5rem;
   background: aliceblue;
-  z-index: 999;
+  border: 5px solid aqua;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.infoWindow ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.infoWindow:hover {
+  cursor: pointer;
 }

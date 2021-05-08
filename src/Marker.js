@@ -1,13 +1,12 @@
-import { useState } from 'react';
+import cx from 'classnames';
 import InfoWindow from './InfoWindow';
 import './Marker.css';
 
-const Marker = ({ text }) => {
-  const [open, setOpen] = useState(false);
+const Marker = ({ sighting, isOpen, toggleOpen }) => {
   return (
     <>
-      <div className="marker" onClick={() => setOpen(!open)} />
-      {open && <InfoWindow text={text} />}
+      <div className={cx('marker', { open: isOpen })} onClick={toggleOpen} />
+      {isOpen && <InfoWindow sighting={sighting} onRequestClose={toggleOpen} />}
     </>
   );
 };
