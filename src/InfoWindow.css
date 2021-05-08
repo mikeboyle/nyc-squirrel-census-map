@@ -1,0 +1,6 @@
+.infoWindow {
+  width: 100px;
+  height: 100px;
+  background: aliceblue;
+  z-index: 999;
+}

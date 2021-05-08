@@ -1,0 +1,12 @@
+.marker {
+  border: 5px solid white;
+  border-radius: 20px;
+  height: 20px;
+  width: 20px;
+}
+
+.marker::before {
+  content: '🐿';
+  font-size: 20px;
+  line-height: 20px;
+}

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { fetchData, mapURL } from './api';
 
 import Map from './Map';
+import NewMap from './NewMap';
 
 function App() {
   const [sightings, setSightings] = useState([]);
@@ -15,19 +16,14 @@ function App() {
     fetchSightings();
   }, []);
 
+  const resultText = sightings.length
+    ? `Found ${sightings.length} squirrels!`
+    : 'Loading squirrels...';
+
   return (
     <div className="App">
-      <p>Found {sightings.length} squirrels!</p>
-      {sightings.length > 0 && (
-        <Map
-          isMarkerShown
-          googleMapURL={mapURL}
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `400px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-          sightings={sightings}
-        />
-      )}
+      <p>{resultText}</p>
+      {sightings.length > 0 && <NewMap sightings={sightings} />}
     </div>
   );
 }
