@@ -8,6 +8,7 @@
   border: 5px solid #aadaff;
   border-radius: 10px;
   font-size: 14px;
+  box-shadow: 2px 2px 2px #ccc;
 }
 
 .infoWindow ul {
