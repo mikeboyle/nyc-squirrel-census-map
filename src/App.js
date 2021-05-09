@@ -59,11 +59,11 @@ function App() {
 
   const resultText = loading
     ? 'Loading squirrels...'
-    : `Found ${sightings.length} squirrels!`;
+    : `Found ${sightings.length} squirrels! 🐿`;
 
   return (
     <div className="App">
-      <p>{resultText}</p>
+      <h1>{resultText}</h1>
       <Filters
         filterOptions={filterOptions}
         currentFilters={currentFilters}
