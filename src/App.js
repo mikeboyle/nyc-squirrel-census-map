@@ -36,10 +36,13 @@ function App() {
   };
 
   const populateFilterOptions = (data) => {
-    return FILTER_NAMES.reduce((filterOptions, name) => {
-      filterOptions[name] = distinctFieldValues(data, name);
-      return filterOptions;
-    }, {});
+    return FILTER_NAMES.reduce(
+      (filterOptions, name) => {
+        filterOptions[name] = distinctFieldValues(data, name);
+        return filterOptions;
+      },
+      { has_notes: [false, true] }
+    );
   };
 
   const fetchSightings = async () => {

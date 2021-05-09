@@ -25,7 +25,7 @@ const InfoWindow = ({ sighting, onRequestClose }) => {
         </li>
         {(activities || interactions) && (
           <li>
-            <b>Notes:</b>
+            <b>Notes: </b>
             {activities}
             <br />
             {interactions}

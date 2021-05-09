@@ -7,11 +7,17 @@ export const mapURL = `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KE
 export const fetchData = async (filters = {}) => {
   let url = 'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=5000';
   Object.keys(filters).forEach((key) => {
-    const val = filters[key];
-    if (val) {
-      url += `&${key}=${val}`;
+    if (key !== 'has_notes') {
+      const val = filters[key];
+      if (val) {
+        url += `&${key}=${val}`;
+      }
     }
   });
+  if (filters['has_notes']) {
+    url +=
+      '&$where=other_interactions IS NOT NULL OR other_activities IS NOT NULL';
+  }
   const res = await fetch(url, {
     headers: { 'X-App-Token': NYC_DATA_TOKEN },
   });
