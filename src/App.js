@@ -14,6 +14,11 @@ const FILTER_NAMES = [
   'running',
   'chasing',
   'climbing',
+  'eating',
+  'foraging',
+  'approaches',
+  'kuks',
+  'quaas',
 ];
 
 function App() {
