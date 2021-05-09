@@ -8,7 +8,6 @@ export const fetchData = async (filters = {}) => {
   Object.keys(filters).forEach((key) => {
     if (key !== 'has_notes') {
       const val = filters[key];
-      // casting string to Boolean allows 'false' but not empty string
       if (val) {
         url += `&${key}=${val}`;
       }
