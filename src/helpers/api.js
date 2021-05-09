@@ -19,17 +19,6 @@ export const fetchData = async (filters = {}) => {
     headers: { 'X-App-Token': NYC_DATA_TOKEN },
   });
   const json = await res.json();
-  // console.log(fieldNames(json));
-  // console.log(distinctFieldValues(json, 'date'));
-  // console.log(distinctFieldValues(json, 'age'));
-  // console.log(distinctFieldValues(json, 'primary_fur_color'));
-  // console.log(distinctFieldValues(json, 'highlight_fur_color'));
-  // console.log(distinctFieldValues(json, 'location'));
-  // console.log(distinctFieldValues(json, 'running'));
-  // console.log(distinctFieldValues(json, 'chasing'));
-  // console.log(distinctFieldValues(json, 'climbing'));
-  // console.log(distinctFieldValues(json, 'specific_location'));
-
   return json;
 };
 
