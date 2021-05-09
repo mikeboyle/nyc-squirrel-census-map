@@ -69,7 +69,7 @@ function App() {
         currentFilters={currentFilters}
         handleFilterSelect={handleFilterSelect}
       />
-      {sightings.length > 0 && <Map sightings={sightings} />}
+      <Map sightings={sightings} />
     </div>
   );
 }
