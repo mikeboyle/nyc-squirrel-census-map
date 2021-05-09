@@ -22,15 +22,6 @@ export const fetchData = async (filters = {}) => {
   return json;
 };
 
-export const fieldNames = (sightings) => {
-  const names = new Set();
-  sightings.forEach((sighting) => {
-    const keys = Object.keys(sighting);
-    keys.forEach((key) => names.add(key));
-  });
-  return names;
-};
-
 export const parseDate = (value) => {
   return parse(value, 'LLddyyyy', new Date());
 };

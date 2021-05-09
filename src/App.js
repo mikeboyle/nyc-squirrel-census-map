@@ -1,25 +1,10 @@
 import './App.css';
 import { useState, useEffect, useCallback } from 'react';
 import { fetchData } from './helpers/api';
-import { distinctFieldValues } from './helpers/filters';
+import { FILTER_NAMES, distinctFieldValues } from './helpers/filters';
 
 import Filters from './components/Filters';
 import Map from './components/Map';
-
-const FILTER_NAMES = [
-  'date',
-  'primary_fur_color',
-  'highlight_fur_color',
-  'location',
-  'running',
-  'chasing',
-  'climbing',
-  'eating',
-  'foraging',
-  'approaches',
-  'kuks',
-  'quaas',
-];
 
 function App() {
   const [loading, setLoading] = useState(true);

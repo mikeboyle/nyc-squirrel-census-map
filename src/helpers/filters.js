@@ -16,3 +16,18 @@ export const snakeToTitleCase = (string) => {
     .map((word) => word[0].toUpperCase() + word.slice(1))
     .join(' ');
 };
+
+export const FILTER_NAMES = [
+  'date',
+  'primary_fur_color',
+  'highlight_fur_color',
+  'location',
+  'running',
+  'chasing',
+  'climbing',
+  'eating',
+  'foraging',
+  'approaches',
+  'kuks',
+  'quaas',
+];
