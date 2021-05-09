@@ -13,4 +13,4 @@ The map integration was built with the [google-map-react library](https://github
 - [ ] Some other types of visualizations of insights from the data set
 - [x] Better organization of components into folders
 - [ ] Unit testing
-- [ ] Handle cases where filters lead to 0 results (don't remove map)
+- [x] Handle cases where filters lead to 0 results (don't remove map)
