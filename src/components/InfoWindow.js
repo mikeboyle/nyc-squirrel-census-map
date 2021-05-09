@@ -1,4 +1,4 @@
-import { parseDate } from './helpers/api';
+import { parseDate } from '../helpers/api';
 import './InfoWindow.css';
 
 const InfoWindow = ({ sighting, onRequestClose }) => {

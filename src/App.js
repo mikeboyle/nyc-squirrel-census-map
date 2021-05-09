@@ -3,8 +3,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { fetchData } from './helpers/api';
 import { distinctFieldValues } from './helpers/filters';
 
-import Filters from './Filters';
-import Map from './Map';
+import Filters from './components/Filters';
+import Map from './components/Map';
 
 const FILTER_NAMES = [
   'date',

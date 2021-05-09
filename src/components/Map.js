@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { MAPS_API_KEY } from './helpers/api';
-import { center } from './center';
+import { MAPS_API_KEY } from '../helpers/api';
+import { center } from '../helpers/center';
 import Marker from './Marker';
 import './Map.css';
 

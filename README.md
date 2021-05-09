@@ -11,5 +11,6 @@ The map integration was built with the [google-map-react library](https://github
 - [ ] Build a back end for better app token security
 - [ ] More human readable filter labels and titles
 - [ ] Some other types of visualizations of insights from the data set
-- [ ] Better organization of components into folders
+- [x] Better organization of components into folders
 - [ ] Unit testing
+- [ ] Handle cases where filters lead to 0 results (don't remove map)
