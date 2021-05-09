@@ -26,7 +26,7 @@ const Map = ({ sightings }) => {
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPS_API_KEY }}
         defaultCenter={{ lat: y, lng: x }}
-        defaultZoom={17}
+        defaultZoom={15}
       >
         {sightings.map((sighting, i) => {
           const { x, y, unique_squirrel_id } = sighting;
@@ -42,7 +42,6 @@ const Map = ({ sightings }) => {
             />
           );
         })}
-        <div lat={59.955413} lng={30.337844} text="My Marker" />
       </GoogleMapReact>
     </div>
   );
