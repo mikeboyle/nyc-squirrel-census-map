@@ -27,7 +27,7 @@ function App() {
     let data = await fetchData(currentFilters);
     if (currentFilters['has_notes'] === 'true') {
       data = data.filter((d) => d.other_activities || d.other_interactions);
-    } else if (Boolean(currentFilters['has_notes'] === 'false')) {
+    } else if (currentFilters['has_notes'] === 'false') {
       data = data.filter((d) => !d.other_activities && !d.other_interactions);
     }
     setSightings(data);
