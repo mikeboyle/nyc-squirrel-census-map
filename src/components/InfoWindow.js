@@ -8,6 +8,7 @@ const InfoWindow = ({ sighting, onRequestClose }) => {
     age,
     other_activities: activities,
     other_interactions: interactions,
+    specific_location: specificLocation,
   } = sighting;
 
   return (
@@ -22,6 +23,11 @@ const InfoWindow = ({ sighting, onRequestClose }) => {
         <li>
           <b>Age:</b> {age}
         </li>
+        {specificLocation && (
+          <li>
+            <b>Specific location:</b> {specificLocation}
+          </li>
+        )}
         {(activities || interactions) && (
           <li>
             <b>Notes: </b>
