@@ -3,7 +3,6 @@ import './InfoWindow.css';
 
 const InfoWindow = ({ sighting, onRequestClose }) => {
   const {
-    unique_squirrel_id: id,
     date,
     primary_fur_color: color,
     age,

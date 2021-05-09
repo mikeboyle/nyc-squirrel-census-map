@@ -1,9 +1,8 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { fetchData } from './helpers/api';
 import { distinctFieldValues } from './helpers/filters';
 
-import Filter from './Filter';
 import Filters from './Filters';
 import Map from './Map';
 
@@ -23,9 +22,19 @@ function App() {
   const [currentFilters, setCurrentFilters] = useState({});
   const [filterOptions, setFilterOptions] = useState({});
 
+  const fetchSightings = useCallback(async () => {
+    setLoading(true);
+    const data = await fetchData(currentFilters);
+    setSightings(data);
+    setLoading(false);
+    if (Object.keys(filterOptions).length < 1) {
+      setFilterOptions(populateFilterOptions(data));
+    }
+  }, [currentFilters, filterOptions]);
+
   useEffect(() => {
     fetchSightings();
-  }, [currentFilters]);
+  }, [currentFilters, fetchSightings]);
 
   const handleFilterSelect = (e) => {
     const { name, value } = e.target;
@@ -43,16 +52,6 @@ function App() {
       },
       { has_notes: [false, true] }
     );
-  };
-
-  const fetchSightings = async () => {
-    setLoading(true);
-    const data = await fetchData(currentFilters);
-    setSightings(data);
-    setLoading(false);
-    if (Object.keys(filterOptions).length < 1) {
-      setFilterOptions(populateFilterOptions(data));
-    }
   };
 
   const resultText = loading
