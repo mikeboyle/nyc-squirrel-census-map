@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { MAPS_API_KEY } from './api';
+import { MAPS_API_KEY } from './helpers/api';
 import { center } from './center';
 import Marker from './Marker';
 import './Map.css';
@@ -15,10 +15,6 @@ const Map = ({ sightings }) => {
     }
   };
 
-  const data = sightings.filter(
-    (sighting) => sighting.other_activities || sighting.other_interactions
-  );
-
   const { x, y } = center(sightings);
   return (
     <div className="map">
@@ -27,7 +23,7 @@ const Map = ({ sightings }) => {
         defaultCenter={{ lat: y, lng: x }}
         defaultZoom={17}
       >
-        {data.map((sighting, i) => {
+        {sightings.map((sighting, i) => {
           const { x, y, unique_squirrel_id } = sighting;
           const key = `${unique_squirrel_id}-${i}`;
           return (

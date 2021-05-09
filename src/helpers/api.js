@@ -4,13 +4,17 @@ const NYC_DATA_TOKEN = process.env['REACT_APP_NYC_DATA_APP_TOKEN'];
 export const MAPS_API_KEY = process.env['REACT_APP_MAPS_API_KEY'];
 export const mapURL = `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}&v=3.exp&libraries=geometry,drawing,places`;
 
-export const fetchData = async () => {
-  const res = await fetch(
-    'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=5000&primary_fur_color=Gray',
-    {
-      headers: { 'X-App-Token': NYC_DATA_TOKEN },
+export const fetchData = async (filters = {}) => {
+  let url = 'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=5000';
+  Object.keys(filters).forEach((key) => {
+    const val = filters[key];
+    if (val) {
+      url += `&${key}=${val}`;
     }
-  );
+  });
+  const res = await fetch(url, {
+    headers: { 'X-App-Token': NYC_DATA_TOKEN },
+  });
   const json = await res.json();
   // console.log(fieldNames(json));
   // console.log(distinctFieldValues(json, 'date'));
@@ -33,18 +37,6 @@ export const fieldNames = (sightings) => {
     keys.forEach((key) => names.add(key));
   });
   return names;
-};
-
-export const distinctFieldValues = (sightings, field) => {
-  const values = new Set();
-  sightings.forEach((sighting) => {
-    let value = sighting[field];
-    if (value !== undefined) {
-      values.add(value);
-    }
-  });
-
-  return Array.from(values).sort();
 };
 
 export const parseDate = (value) => {
