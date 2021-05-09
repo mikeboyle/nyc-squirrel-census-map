@@ -9,3 +9,10 @@ export const distinctFieldValues = (sightings, field) => {
 
   return Array.from(values).sort();
 };
+
+export const snakeToTitleCase = (string) => {
+  return string
+    .split('_')
+    .map((word) => word[0].toUpperCase() + word.slice(1))
+    .join(' ');
+};

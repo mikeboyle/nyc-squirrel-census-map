@@ -1,0 +1,5 @@
+.filter label,
+.filter select {
+  display: block;
+  padding: 0.5rem;
+}
