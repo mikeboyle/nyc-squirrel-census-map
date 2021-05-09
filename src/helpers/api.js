@@ -9,7 +9,7 @@ export const fetchData = async (filters = {}) => {
     if (key !== 'has_notes') {
       const val = filters[key];
       // casting string to Boolean allows 'false' but not empty string
-      if (Boolean(val)) {
+      if (val) {
         url += `&${key}=${val}`;
       }
     }
