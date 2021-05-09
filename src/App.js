@@ -24,7 +24,10 @@ function App() {
 
   const fetchSightings = useCallback(async () => {
     setLoading(true);
-    const data = await fetchData(currentFilters);
+    let data = await fetchData(currentFilters);
+    if (currentFilters['has_notes']) {
+      data = data.filter((d) => d.other_activities || d.other_interactions);
+    }
     setSightings(data);
     setLoading(false);
     if (Object.keys(filterOptions).length < 1) {

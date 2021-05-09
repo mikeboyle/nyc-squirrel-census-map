@@ -14,10 +14,7 @@ export const fetchData = async (filters = {}) => {
       }
     }
   });
-  if (filters['has_notes']) {
-    url +=
-      '&$where=other_interactions IS NOT NULL OR other_activities IS NOT NULL';
-  }
+
   const res = await fetch(url, {
     headers: { 'X-App-Token': NYC_DATA_TOKEN },
   });
