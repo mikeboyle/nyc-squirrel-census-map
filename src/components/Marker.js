@@ -5,7 +5,13 @@ import './Marker.css';
 const Marker = ({ sighting, isOpen, toggleOpen }) => {
   return (
     <>
-      <div className={cx('marker', { open: isOpen })} onClick={toggleOpen} />
+      <div
+        data-testid="marker"
+        className={cx('marker', { open: isOpen })}
+        onClick={() => {
+          toggleOpen();
+        }}
+      />
       {isOpen && <InfoWindow sighting={sighting} onRequestClose={toggleOpen} />}
     </>
   );

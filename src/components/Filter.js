@@ -1,11 +1,10 @@
-import { snakeToTitleCase } from '../helpers/filters';
-import { parseDate } from '../helpers/api';
+import { parseDate, snakeToTitleCase } from '../helpers/format';
 import './Filter.css';
 
 const Filter = ({ filterName, currentFilter, options, onChange }) => {
   const formatOption = (option) => {
     if (filterName === 'date') {
-      return parseDate(option).toDateString();
+      return parseDate(option);
     } else {
       return option.toString();
     }
@@ -21,7 +20,9 @@ const Filter = ({ filterName, currentFilter, options, onChange }) => {
       >
         <option value="">All options</option>
         {options.map((option) => (
-          <option value={option}>{formatOption(option)}</option>
+          <option key={option} value={option}>
+            {formatOption(option)}
+          </option>
         ))}
       </select>
     </div>

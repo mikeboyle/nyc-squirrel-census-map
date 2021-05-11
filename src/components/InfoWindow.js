@@ -1,4 +1,4 @@
-import { parseDate } from '../helpers/api';
+import { parseDate } from '../helpers/format';
 import './InfoWindow.css';
 
 const InfoWindow = ({ sighting, onRequestClose }) => {
@@ -15,7 +15,7 @@ const InfoWindow = ({ sighting, onRequestClose }) => {
     <div className="infoWindow" onClick={onRequestClose}>
       <ul>
         <li>
-          <b>Date:</b> {parseDate(date).toDateString()}
+          <b>Date:</b> {parseDate(date)}
         </li>
         <li>
           <b>Color:</b> {color}

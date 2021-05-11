@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchData } from './helpers/api';
 import { filterForNotes, populateFilterOptions } from './helpers/filters';
 
@@ -12,22 +12,23 @@ function App() {
   const [filterOptions, setFilterOptions] = useState({});
   const [currentFilters, setCurrentFilters] = useState({});
 
-  const fetchSightings = useCallback(async () => {
-    setLoading(true);
+  useEffect(() => {
+    const fetchSightings = async () => {
+      setLoading(true);
 
-    let data = await fetchData(currentFilters);
+      let data = await fetchData(currentFilters);
 
-    if (Object.keys(filterOptions).length < 1) {
-      setFilterOptions(populateFilterOptions(data));
-    }
-
-    setSightings(filterForNotes(data, currentFilters['has_notes']));
-    setLoading(false);
-  }, [currentFilters, filterOptions]);
+      setSightings(filterForNotes(data, currentFilters['has_notes']));
+      setLoading(false);
+    };
+    fetchSightings();
+  }, [currentFilters]);
 
   useEffect(() => {
-    fetchSightings();
-  }, [currentFilters, fetchSightings]);
+    if (Object.keys(filterOptions).length < 1 && sightings.length > 0) {
+      setFilterOptions(populateFilterOptions(sightings));
+    }
+  }, [filterOptions, sightings]);
 
   const handleFilterSelect = (e) => {
     const { name, value } = e.target;

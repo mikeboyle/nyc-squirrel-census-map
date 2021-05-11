@@ -1,4 +1,4 @@
-const FILTER_NAMES = [
+export const FILTER_NAMES = [
   'date',
   'primary_fur_color',
   'highlight_fur_color',
@@ -23,13 +23,6 @@ const distinctFieldValues = (sightings, field) => {
   });
 
   return Array.from(values).sort();
-};
-
-export const snakeToTitleCase = (string) => {
-  return string
-    .split('_')
-    .map((word) => word[0].toUpperCase() + word.slice(1))
-    .join(' ');
 };
 
 export const filterForNotes = (data, filter) => {

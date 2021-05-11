@@ -1,5 +1,3 @@
-import { parse } from 'date-fns';
-
 const NYC_DATA_TOKEN = process.env['REACT_APP_NYC_DATA_APP_TOKEN'];
 export const MAPS_API_KEY = process.env['REACT_APP_MAPS_API_KEY'];
 
@@ -19,8 +17,4 @@ export const fetchData = async (filters = {}) => {
   });
   const json = await res.json();
   return json;
-};
-
-export const parseDate = (value) => {
-  return parse(value, 'LLddyyyy', new Date());
 };
