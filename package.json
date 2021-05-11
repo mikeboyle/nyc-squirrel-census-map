@@ -16,7 +16,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "test:e2e": "./node_modules/.bin/cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -37,6 +38,7 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/cypress": "^7.0.6",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^13.1.8",
     "cypress": "^7.2.0"
