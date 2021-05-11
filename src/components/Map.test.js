@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { data } from '../helpers/__fixtures__/data';
-// import { FILTER_NAMES } from './helpers/filters';
 import { parseDate } from '../helpers/format';
 
 import Map from './Map';
