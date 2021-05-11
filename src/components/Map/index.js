@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { MAPS_API_KEY } from '../helpers/api';
-import { center } from '../helpers/center';
-import Marker from './Marker';
+import { MAPS_API_KEY } from '../../helpers/api';
+import { center } from '../../helpers/center';
+import Marker from '../Marker';
 import './Map.css';
 
 const DEFAULT_Y = 40.785091;
@@ -22,10 +22,10 @@ const Map = ({ sightings }) => {
   const latLong = sightings.length > 0 ? center(sightings) : DEFAULT_LAT_LONG;
   const { x, y } = latLong;
   return (
-    <div className="map">
+    <div className="map" data-testid="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: MAPS_API_KEY }}
-        defaultCenter={{ lat: y, lng: x }}
+        center={{ lat: y, lng: x }}
         defaultZoom={15}
       >
         {sightings.map((sighting, i) => {
@@ -38,7 +38,9 @@ const Map = ({ sightings }) => {
               lng={Number(x)}
               sighting={sighting}
               isOpen={openInfoWindow === key}
-              toggleOpen={() => toggleOpenInfoWindow(key)}
+              toggleOpen={() => {
+                toggleOpenInfoWindow(key);
+              }}
             />
           );
         })}

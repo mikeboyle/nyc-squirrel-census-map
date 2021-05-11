@@ -1,7 +1,7 @@
 import './App.css';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchData } from './helpers/api';
-import { FILTER_NAMES, distinctFieldValues } from './helpers/filters';
+import { filterForNotes, populateFilterOptions } from './helpers/filters';
 
 import Filters from './components/Filters';
 import Map from './components/Map';
@@ -9,27 +9,26 @@ import Map from './components/Map';
 function App() {
   const [loading, setLoading] = useState(true);
   const [sightings, setSightings] = useState([]);
-  const [currentFilters, setCurrentFilters] = useState({});
   const [filterOptions, setFilterOptions] = useState({});
-
-  const fetchSightings = useCallback(async () => {
-    setLoading(true);
-    let data = await fetchData(currentFilters);
-    if (currentFilters['has_notes'] === 'true') {
-      data = data.filter((d) => d.other_activities || d.other_interactions);
-    } else if (currentFilters['has_notes'] === 'false') {
-      data = data.filter((d) => !d.other_activities && !d.other_interactions);
-    }
-    setSightings(data);
-    setLoading(false);
-    if (Object.keys(filterOptions).length < 1) {
-      setFilterOptions(populateFilterOptions(data));
-    }
-  }, [currentFilters, filterOptions]);
+  const [currentFilters, setCurrentFilters] = useState({});
 
   useEffect(() => {
+    const fetchSightings = async () => {
+      setLoading(true);
+
+      let data = await fetchData(currentFilters);
+
+      setSightings(filterForNotes(data, currentFilters['has_notes']));
+      setLoading(false);
+    };
     fetchSightings();
-  }, [currentFilters, fetchSightings]);
+  }, [currentFilters]);
+
+  useEffect(() => {
+    if (Object.keys(filterOptions).length < 1 && sightings.length > 0) {
+      setFilterOptions(populateFilterOptions(sightings));
+    }
+  }, [filterOptions, sightings]);
 
   const handleFilterSelect = (e) => {
     const { name, value } = e.target;
@@ -37,16 +36,6 @@ function App() {
       ...currentFilters,
       [name]: value,
     });
-  };
-
-  const populateFilterOptions = (data) => {
-    return FILTER_NAMES.reduce(
-      (filterOptions, name) => {
-        filterOptions[name] = distinctFieldValues(data, name);
-        return filterOptions;
-      },
-      { has_notes: [false, true] }
-    );
   };
 
   const resultText = loading
