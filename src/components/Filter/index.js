@@ -1,4 +1,4 @@
-import { parseDate, snakeToTitleCase } from '../helpers/format';
+import { parseDate, snakeToTitleCase } from '../../helpers/format';
 import './Filter.css';
 
 const Filter = ({ filterName, currentFilter, options, onChange }) => {

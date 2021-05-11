@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { data } from '../helpers/__fixtures__/data';
-import { parseDate } from '../helpers/format';
+import { data } from '../../helpers/__fixtures__/data';
+import { parseDate } from '../../helpers/format';
 
-import Map from './Map';
+import Map from './index';
 
 describe('<Map />', () => {
   beforeEach(() => {

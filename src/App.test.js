@@ -1,5 +1,7 @@
 import { act, render, screen, within } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { data } from './helpers/__fixtures__/data';
+import { API_URL, NYC_DATA_TOKEN } from './helpers/api';
 import { FILTER_NAMES } from './helpers/filters';
 import { snakeToTitleCase } from './helpers/format';
 
@@ -18,6 +20,10 @@ describe('<App />', () => {
     });
   });
 
+  afterEach(() => {
+    global.fetch.mockClear();
+  });
+
   it('renders and fetches mock data', async () => {
     screen.getByText('Found 5 squirrels! 🐿');
   });
@@ -33,6 +39,21 @@ describe('<App />', () => {
       const filter = screen.getByLabelText(snakeToTitleCase(name));
       const options = within(filter).getAllByRole('option');
       expect(options.length).toBeGreaterThan(2);
+    });
+  });
+
+  it('handles filter selections', async () => {
+    const colorSelect = screen.getByLabelText('Location');
+    await act(async () =>
+      userEvent.selectOptions(
+        colorSelect,
+        screen.getByRole('option', { name: 'Tree' })
+      )
+    );
+
+    expect(global.fetch).toHaveBeenCalledTimes(2);
+    expect(global.fetch).lastCalledWith(`${API_URL}&location=Tree`, {
+      headers: { 'X-App-Token': NYC_DATA_TOKEN },
     });
   });
 

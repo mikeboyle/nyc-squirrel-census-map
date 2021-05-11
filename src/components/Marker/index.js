@@ -1,5 +1,5 @@
 import cx from 'classnames';
-import InfoWindow from './InfoWindow';
+import InfoWindow from '../InfoWindow';
 import './Marker.css';
 
 const Marker = ({ sighting, isOpen, toggleOpen }) => {

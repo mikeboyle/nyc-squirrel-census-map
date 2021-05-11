@@ -1,4 +1,4 @@
-import Filter from './Filter';
+import Filter from '../Filter';
 import './Filters.css';
 
 const Filters = ({ filterOptions, currentFilters, handleFilterSelect }) => (
