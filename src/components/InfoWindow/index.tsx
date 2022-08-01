@@ -1,7 +1,14 @@
 import { parseDate } from '../../helpers/format';
 import './InfoWindow.css';
+import { Sighting } from '../../types/types';
+import React from 'react';
 
-const InfoWindow = ({ sighting, onRequestClose }) => {
+type InfoWindowProps = {
+  sighting: Sighting,
+  onRequestClose: () => void,
+};
+
+const InfoWindow: React.FC<InfoWindowProps> = ({ sighting, onRequestClose }) => {
   const {
     date,
     primary_fur_color: color,

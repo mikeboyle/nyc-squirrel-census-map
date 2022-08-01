@@ -14,9 +14,11 @@ export const fetchData = async (filters = {}) => {
     }
   });
 
+  console.log({ NYC_DATA_TOKEN });
   const res = await fetch(url, {
     headers: { 'X-App-Token': NYC_DATA_TOKEN },
   });
+
   const json = await res.json();
   return json;
 };

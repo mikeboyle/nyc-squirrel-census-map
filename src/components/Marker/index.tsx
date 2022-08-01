@@ -1,8 +1,15 @@
 import cx from 'classnames';
+import { Sighting } from '../../types/types';
 import InfoWindow from '../InfoWindow';
 import './Marker.css';
 
-const Marker = ({ sighting, isOpen, toggleOpen }) => {
+type MarkerProps = {
+  sighting: Sighting;
+  isOpen: boolean;
+  toggleOpen: () => void;
+};
+
+const Marker: React.FC<MarkerProps> = ({ sighting, isOpen, toggleOpen }) => {
   return (
     <>
       <div
